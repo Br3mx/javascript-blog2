@@ -43,4 +43,51 @@ const titleClickHandler = function(event){
     const links = document.querySelectorAll('.titles a');
     for(let link of links){
     link.addEventListener('click', titleClickHandler);
+    }
+// New code 5.4 exercise
+
+{
+  const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+  
+
+function generateTitleLinks(){
+
+  /* [DONE] remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  titleList.innerHTML = '';
+  /* [DONE] for each article */
+  const articles = document.querySelectorAll(optArticleSelector);
+  let html = '';
+  for(let article of articles){
+    article.querySelector(optArticleSelector);
+  
+
+    /* [DONE] get the article id */
+    const articleId = article.getAttribute("id");
+    
+
+    /* [DONE] find the title element */
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    /* get the title from the title element */
+    
+    /* [DONE] create HTML of the link */
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    titleList.insertAdjacentHTML('beforeend', linkHTML);
+
+
+    /* insert link into titleList */
+    html = html + linkHTML;
+  }
+  titleList.innerHTML = html;
+  const links = document.querySelectorAll('.titles a');
+    for(let link of links){
+    link.addEventListener('click', titleClickHandler);
+    }
+
+} generateTitleLinks();
+
+
+
 }
