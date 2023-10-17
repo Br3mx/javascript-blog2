@@ -51,7 +51,10 @@
       optTitleSelector = '.post-title',
       optTitleListSelector = '.titles',
       optArticleTagsSelector = '.post-tags .list',
-      optArticleAuthorSelector = '.post-author';
+      optArticleAuthorSelector = '.post-author',
+      optTagsListSelector = '.tags.list',
+      optCloudClass = '5',
+      optCloudClassPrefix = 'tag-size-';
   
     function generateTitleLinks(customSelector = ''){
   
@@ -93,8 +96,27 @@
   
   
   
+    // CalculateTagsParams
+    function calculateTagsParams(tags){
+      const params = {
+        'param.max': Math.max(0),
+        'param.min': Math.min(9999999),
+      }
+      for(let tag in tags){
+       console.log(tag + ' is used ' + tags[tag] + ' times');
+       if(tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+      }
+   
+      return params;
+    }
+
     // Tags
+
     function generateTags(){
+      /* [new - DONE] create a new variable allTags with an empty array */
+      let allTags = {};
       /* find all articles */
       const articles = document.querySelectorAll(optArticleSelector);
       
@@ -105,7 +127,6 @@
         /* find tags wrapper */
         const tagWrapper = article.querySelector(optArticleTagsSelector);
   
-        /* make html variable with empty string */
         /* get tags from data-tags attribute */
         const articleTags = article.getAttribute('data-tags');
         console.log(articleTags);
@@ -121,20 +142,42 @@
           const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
           /* add generated code to html variable */
           tagWrapper.insertAdjacentHTML('beforeend', linkHTML);
+          /*[new - DONE] chceck if this link is not already in allTags */
+          if(!allTags[tag]) {
+            /* [new - DONE] add tag to allTags object */
+            allTags[tag] = 1;
+          } else {
+            allTags[tag]++;
+          }
   
           /* END LOOP: for each tag */
-        }
-        /* insert HTML of all the links into the tags wrapper */
-        
+        }        
   
       /* END LOOP: for every article: */
       }
+      /* [new - DONE] find list of tags in right column */
+      const tagList = document.querySelector(optTagsListSelector);
+      /* [NEW] create variable for all links HTML code */
+      const tagsParams = calculateTagsParams(allTags);
+      console.log('tagsParams:', tagsParams);
+      
+      let allTagsHTML = '';
+
+      /* [NEW] START LOOP: for each tag in allTags: */
+      for(let tag in allTags){
+        /* [NEW] generate code of a link and add it to allTagsHTML */
+        allTagsHTML += '<a href="#">' + tag + '(' + allTags[tag] + ')</a> ';
+      
+      /* [NEW] END LOOP: for each tag in allTags: */
+      }
+      /*[NEW] add HTML from allTagsHTML to tagList */
+      tagList.innerHTML = allTagsHTML;
     }
       
     generateTags();
   
     // clickhandler
-  
+
     function tagClickHandler(event){
       /* prevent default action for this event */
       event.preventDefault();
