@@ -88,6 +88,7 @@ body {
 .list-horizontal {
   li {
     display: inline-block;
+    padding-right: 5px;
   }
 }
 
@@ -96,6 +97,7 @@ body {
 .authors {
   li {
     margin-bottom: 12px;
+    
   }
 }
 
@@ -122,10 +124,7 @@ body {
   }
 }
 /* list tags */
-.sidebar .list {
-  display: inline-block;
-  
-}
+
 .tag-size-5 {
   font-size: 120%;
   color: green;
@@ -133,3 +132,8 @@ body {
 .list a {
   text-decoration: none;
 }
+
+.sidebar .authors {
+  justify-content: space-between;
+ }
+

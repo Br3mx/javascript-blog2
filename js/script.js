@@ -55,7 +55,7 @@
     optTagsListSelector = '.tags.list',
     optCloudClassCount = '5',
     optCloudClassPrefix = 'tag-size-',
-    optAuthorsListSelector = '.authors'
+    optAuthorsListSelector = '.authors';
   
   function generateTitleLinks(customSelector = ''){
   
@@ -177,7 +177,7 @@
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [NEW] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += '<a class="'+ calculateTagClass(allTags[tag], tagsParams) + '"href="#">' + tag + '(' + allTags[tag] + ')</a> ';
+      allTagsHTML += '<li><a class="'+ calculateTagClass(allTags[tag], tagsParams) + '"href="#">' + tag + '(' + allTags[tag] + ')</a></li> ';
       
       /* [NEW] END LOOP: for each tag in allTags: */
     }
@@ -239,7 +239,7 @@
   
   function generateAuthors(){
     //// new
-    let allAuthor = {}
+    let allAuthor = {};
     /* [done] find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
     console.log('TO MOJE', articles);
@@ -273,11 +273,11 @@
     }
     ////newww
     const authorList = document.querySelector(optAuthorsListSelector);
-    const authorParams = calculateTagClass(allAuthor);
+    const authorParams = calculateTagsParams(allAuthor);
     let allAuthorHTML = '';
 
     for(let author in allAuthor){
-      allAuthorHTML += '<a class="'+ calculateTagClass(allAuthor[author], authorParams) + '"href="#">' + author + '(' + allAuthor[author], authorParams + ')</a> ';
+      allAuthorHTML += '<li><a class="'+ calculateTagClass(allAuthor[author], authorParams) + '"href="#">' + author + '(' + allAuthor[author], authorParams + ') </a></li> ';
     
     
     }authorList.innerHTML = allAuthorHTML;
