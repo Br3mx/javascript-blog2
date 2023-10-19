@@ -100,6 +100,9 @@ body {
 }
 
 /* Post */
+.post-author a{
+  text-decoration: none;
+}
 
 .post {
   display: none;
@@ -117,4 +120,16 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+/* list tags */
+.sidebar .list {
+  display: inline-block;
+  
+}
+.tag-size-5 {
+  font-size: 120%;
+  color: green;
+}
+.list a {
+  text-decoration: none;
 }
