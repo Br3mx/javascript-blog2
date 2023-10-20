@@ -236,7 +236,6 @@
   
   
   // Authors
-  
   function generateAuthors(){
     //// new
     let allAuthor = {};
@@ -284,9 +283,11 @@
     
   }generateAuthors();
   
+  
   // clickhandler
   
   function authorClickHandler(event){
+    
     /* prevent default action for this event */
     event.preventDefault();
     /* make new constant named "clickedElement" and give it the value of "this" */
@@ -311,8 +312,6 @@
       link.classList.add('active');
       /* END LOOP: for each found author link */
     }
-    /* execute function "generateTitleLinks" with article selector as argument */
-    generateTitleLinks('[data-author~="' + authorAttribute + '"]');
   }
   
   
