@@ -1,3 +1,5 @@
+/* global Handlebars */
+
 {
   'use strict';
   const templates = {
@@ -67,7 +69,7 @@
     optCloudClassPrefix = 'tag-size-',
     optAuthorsListSelector = '.authors';
   
-  function generateTitleLinks(customSelector = ''){
+  const generateTitleLinks = function (customSelector = ''){
   
     /* [DONE] remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
@@ -104,13 +106,14 @@
       link.addEventListener('click', titleClickHandler);
     }
   
-  } generateTitleLinks();
+  }; 
+  generateTitleLinks();
   
   
   
   
   // CalculateTagsParams
-  function calculateTagsParams(tags){
+  const calculateTagsParams = function (tags){
     const params = {
       max: 0,
       min: 9999999,
@@ -125,19 +128,20 @@
     }
    
     return params;
-  }
+  };
   // calculateTagClass
-  function calculateTagClass(count, params){
+  const calculateTagClass = function (count, params){
     const normalizedCount = count - params.min;
     const normalizedMax = params.max - params.min;
     const percentage = normalizedCount / normalizedMax;
     const classNumber = Math.floor( percentage * (optCloudClassCount -1) + 1);
     return optCloudClassPrefix + classNumber;
-  } console.log(calculateTagClass);
+  } ;
+  console.log(calculateTagClass);
 
   // Tags
 
-  function generateTags(){
+  const generateTags = function (){
     /* [new - DONE] create a new variable allTags with an empty array */
     let allTags = {};
     /* find all articles */
@@ -204,13 +208,13 @@
     //tagList.innerHTML = allTagsHTML;
     tagList.innerHTML = templates.tagCloudLink(allTagsData);
     console.log('patrz tu', allTagsData);
-  }
+  };
       
   generateTags();
   
   // clickhandler
 
-  function tagClickHandler(event){
+  const tagClickHandler = function (event){
     /* prevent default action for this event */
     event.preventDefault();
     /* make new constant named "clickedElement" and give it the value of "this" */
@@ -238,10 +242,10 @@
     }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-tags~="' + tag + '"]');
-  }
+  };
     
     
-  function addClickListenersToTags(){
+  const addClickListenersToTags = function (){
     /* find all links to tags */
     const tagLinks = document.querySelectorAll('.post-tags .list a');
     /* START LOOP: for each link */
@@ -251,13 +255,13 @@
   
       /* END LOOP: for each link */
     }
-  }
+  };
     
   addClickListenersToTags();
   
   
   // Authors
-  function generateAuthors(){
+  const generateAuthors = function (){
     //// new
     let allAuthor = {};
     /* [done] find all articles */
@@ -311,12 +315,13 @@
     }authorList.innerHTML = templates.authorCloudLink(allAuthorData);
     console.log('patrz tu', allAuthorData);
     
-  }generateAuthors();
+  };
+  generateAuthors();
   
   
   // clickhandler
   
-  function authorClickHandler(event){
+  const authorClickHandler = function (event){
     
     /* prevent default action for this event */
     event.preventDefault();
@@ -342,10 +347,10 @@
       link.classList.add('active');
       /* END LOOP: for each found author link */
     }
-  }
+  };
   
   
-  function addClickListenersToAuthors(){
+  const addClickListenersToAuthors = function (){
     /* find all links to author */
     const authorLinks = document.querySelectorAll('.post-authors a');
     /* START LOOP: for each link */
@@ -355,7 +360,7 @@
   
       /* END LOOP: for each link */
     }
-  }
+  };
   
   addClickListenersToAuthors();
   
